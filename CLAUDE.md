@@ -235,7 +235,7 @@ When asked to create a new newsletter/email template:
 
 ## Deployment
 
-Deploys via **GitHub Actions** → Vercel (same pattern as gitlaw-ui).
+Deploys via **GitHub Actions** → Vercel.
 
 | Trigger | Target |
 |---------|--------|
