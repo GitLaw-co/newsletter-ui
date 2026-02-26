@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 type NativeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'className'>;
 
-export interface EmailFooterProps extends NativeProps {
+export interface FooterProps extends NativeProps {
   /** Main site URL shown as a link */
   siteUrl?: string;
   /** Unsubscribe link URL */
@@ -13,7 +13,7 @@ export interface EmailFooterProps extends NativeProps {
   className?: string;
 }
 
-export const EmailFooter = forwardRef<HTMLDivElement, EmailFooterProps>(
+export const Footer = forwardRef<HTMLDivElement, FooterProps>(
   (
     {
       siteUrl = 'https://git.law',
@@ -67,4 +67,4 @@ export const EmailFooter = forwardRef<HTMLDivElement, EmailFooterProps>(
   )
 );
 
-EmailFooter.displayName = 'EmailFooter';
+Footer.displayName = 'Footer';

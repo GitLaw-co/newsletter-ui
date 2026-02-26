@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { EmailFeatureBlock } from '../components/EmailFeatureBlock';
+import { FeatureBlock } from '../components/FeatureBlock';
 
-const meta: Meta<typeof EmailFeatureBlock> = {
-  title: 'Email/EmailFeatureBlock',
-  component: EmailFeatureBlock,
+const meta: Meta<typeof FeatureBlock> = {
+  title: 'Email/Components/FeatureBlock',
+  component: FeatureBlock,
   parameters: { layout: 'centered', backgrounds: { default: 'light' } },
   argTypes: {
     variant: {
@@ -23,7 +23,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (args) => (
     <div className="w-[604px] bg-white p-gitlaw-2xl">
-      <EmailFeatureBlock {...args} />
+      <FeatureBlock {...args} />
     </div>
   ),
   args: {
@@ -40,7 +40,7 @@ export const AllVariants: Story = {
     <div className="flex flex-col gap-gitlaw-3xl w-[604px] bg-white p-gitlaw-2xl">
       <div>
         <p className="text-sm text-subtle mb-gitlaw-m">Purple (default)</p>
-        <EmailFeatureBlock
+        <FeatureBlock
           variant="purple"
           text="Never miss a contract renewal again"
           caption="Automatic renewal reminders keep you ahead of every deadline."
@@ -48,7 +48,7 @@ export const AllVariants: Story = {
       </div>
       <div>
         <p className="text-sm text-subtle mb-gitlaw-m">Light purple</p>
-        <EmailFeatureBlock
+        <FeatureBlock
           variant="light-purple"
           text="Send contracts in seconds with eSign"
           caption="Legally binding e-signatures, built right into your workflow."
@@ -56,7 +56,7 @@ export const AllVariants: Story = {
       </div>
       <div>
         <p className="text-sm text-subtle mb-gitlaw-m">Green</p>
-        <EmailFeatureBlock
+        <FeatureBlock
           variant="green"
           text="Collaborate with your whole team"
           textPosition="right"
@@ -65,7 +65,7 @@ export const AllVariants: Story = {
       </div>
       <div>
         <p className="text-sm text-subtle mb-gitlaw-m">Tall variant (video block)</p>
-        <EmailFeatureBlock
+        <FeatureBlock
           variant="purple"
           text="Watch the full walkthrough video"
           height="tall"

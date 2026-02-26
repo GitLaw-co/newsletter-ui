@@ -1,13 +1,13 @@
 import React, { forwardRef } from 'react';
 
-export type EmailFeatureBlockVariant = 'purple' | 'light-purple' | 'green';
-export type EmailFeatureBlockHeight = 'default' | 'tall';
+export type FeatureBlockVariant = 'purple' | 'light-purple' | 'green';
+export type FeatureBlockHeight = 'default' | 'tall';
 
 type NativeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'className'>;
 
-export interface EmailFeatureBlockProps extends NativeProps {
+export interface FeatureBlockProps extends NativeProps {
   /** Background colour theme */
-  variant?: EmailFeatureBlockVariant;
+  variant?: FeatureBlockVariant;
   /** Bold headline text overlaid on the block */
   text: string;
   /** Position of the text within the block */
@@ -17,29 +17,29 @@ export interface EmailFeatureBlockProps extends NativeProps {
   /** Optional visual content (image, mock UI) placed inside the block */
   children?: React.ReactNode;
   /** Block height — default=220px, tall=320px */
-  height?: EmailFeatureBlockHeight;
+  height?: FeatureBlockHeight;
   /** Additional CSS classes */
   className?: string;
 }
 
-const variantBg: Record<EmailFeatureBlockVariant, string> = {
+const variantBg: Record<FeatureBlockVariant, string> = {
   purple: 'bg-primary',
   'light-purple': 'bg-email-light-purple',
   green: 'bg-email-green',
 };
 
-const variantTextColor: Record<EmailFeatureBlockVariant, string> = {
+const variantTextColor: Record<FeatureBlockVariant, string> = {
   purple: 'text-negative',
   'light-purple': 'text-negative',
   green: 'text-primary',
 };
 
-const heightClasses: Record<EmailFeatureBlockHeight, string> = {
+const heightClasses: Record<FeatureBlockHeight, string> = {
   default: 'h-[220px]',
   tall: 'h-[320px]',
 };
 
-export const EmailFeatureBlock = forwardRef<HTMLDivElement, EmailFeatureBlockProps>(
+export const FeatureBlock = forwardRef<HTMLDivElement, FeatureBlockProps>(
   (
     {
       variant = 'purple',
@@ -81,4 +81,4 @@ export const EmailFeatureBlock = forwardRef<HTMLDivElement, EmailFeatureBlockPro
   )
 );
 
-EmailFeatureBlock.displayName = 'EmailFeatureBlock';
+FeatureBlock.displayName = 'FeatureBlock';

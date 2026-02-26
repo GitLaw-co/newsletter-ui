@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
-import { EmailButton } from './EmailButton';
+import { Button } from './Button';
 
 type NativeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'className'>;
 
-export interface EmailHeroProps extends NativeProps {
+export interface HeroProps extends NativeProps {
   /** The main headline text */
   headline: string;
   /** Optional word or phrase within the headline to highlight in yellow */
@@ -18,7 +18,7 @@ export interface EmailHeroProps extends NativeProps {
   className?: string;
 }
 
-export const EmailHero = forwardRef<HTMLDivElement, EmailHeroProps>(
+export const Hero = forwardRef<HTMLDivElement, HeroProps>(
   (
     {
       headline,
@@ -67,7 +67,7 @@ export const EmailHero = forwardRef<HTMLDivElement, EmailHeroProps>(
         </div>
         {ctaLabel && (
           <div>
-            <EmailButton href={ctaHref}>{ctaLabel}</EmailButton>
+            <Button href={ctaHref}>{ctaLabel}</Button>
           </div>
         )}
       </div>
@@ -75,4 +75,4 @@ export const EmailHero = forwardRef<HTMLDivElement, EmailHeroProps>(
   }
 );
 
-EmailHero.displayName = 'EmailHero';
+Hero.displayName = 'Hero';

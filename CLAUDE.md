@@ -16,12 +16,12 @@ npm run build-storybook  # build check — run before every PR
 
 ```
 src/
-├── components/       # Email components (flat: EmailButton.tsx, EmailHero.tsx, …)
+├── components/       # Email components (flat: Button.tsx, Hero.tsx, …)
 ├── specs/            # Design tokens + specs (single source of truth)
 │   ├── colors.tokens.js   # All color primitives + semantic tokens (plain JS for Node compat)
 │   ├── colors.ts          # Re-exports with TypeScript types
 │   └── index.ts           # Barrel — import from '../specs', not individual files
-├── stories/          # Storybook stories
+├── stories/          # Storybook stories (components + template stories)
 ├── assets/email/     # Email images (logos, photos, illustrations)
 └── styles/globals.css # Font imports, transition utilities
 
@@ -32,24 +32,24 @@ public/               # Static assets served by Storybook
 
 | Component | Description |
 |-----------|-------------|
-| EmailWrapper | Outermost container — 700px, white, rounded, shadow, flex column |
-| EmailHeader | Logo at top — image or text wordmark fallback |
-| EmailHero | Large Georgia headline, optional yellow highlight, body, CTA |
-| EmailButton | CTA link styled as purple pill button (`<a>` tag, not `<button>`) |
-| EmailDivider | Horizontal rule separator between sections |
-| EmailSectionHeader | Section heading in two sizes (lg/md) |
-| EmailFeatureBlock | Colored banner block (purple/light-purple/green) with text overlay |
-| EmailTemplateCard | Decorative document card (300x300, dashed border, skeleton bars) |
-| EmailFooter | Footer with tagline, site URL, address, unsubscribe link |
+| Wrapper | Outermost container — 700px, white, rounded, shadow, flex column |
+| Header | Logo at top — image or text wordmark fallback |
+| Hero | Large Georgia headline, optional yellow highlight, body, CTA |
+| Button | CTA link styled as purple pill button (`<a>` tag, not `<button>`) |
+| Divider | Horizontal rule separator between sections |
+| SectionHeader | Section heading in two sizes (lg/md) |
+| FeatureBlock | Colored banner block (purple/light-purple/green) with text overlay |
+| TemplateCard | Decorative document card (300x300, dashed border, skeleton bars) |
+| Footer | Footer with tagline, site URL, address, unsubscribe link |
 
 ## How to Compose an Email Template
 
 Every email follows this structure:
 
 ```tsx
-<EmailWrapper>
-  <EmailHeader logoSrc={logoUrl} />
-  <EmailHero
+<Wrapper>
+  <Header logoSrc={logoUrl} />
+  <Hero
     headline="Your headline here"
     highlightText="word to highlight"
     body="Body paragraph text"
@@ -57,15 +57,17 @@ Every email follows this structure:
     ctaHref="#"
   />
   {/* Content sections — mix and match: */}
-  <EmailFeatureBlock variant="purple" text="Feature headline" />
-  <EmailDivider />
-  <EmailSectionHeader size="md">Section Title</EmailSectionHeader>
-  <EmailTemplateCard title="Document Name" generatedIn="1.2s" />
-  <EmailFooter />
-</EmailWrapper>
+  <FeatureBlock variant="purple" text="Feature headline" />
+  <Divider />
+  <SectionHeader size="md">Section Title</SectionHeader>
+  <TemplateCard title="Document Name" generatedIn="1.2s" />
+  <Footer />
+</Wrapper>
 ```
 
-### Template Patterns (from AllTemplates story)
+### Template Patterns
+
+Each template has its own story under `Email/Templates/`:
 
 | Template | Structure |
 |----------|-----------|
@@ -75,6 +77,32 @@ Every email follows this structure:
 | Trust Marks | Header → Hero → security icons grid → user photos → investor logos → Footer |
 | Recommended Docs | Header → Hero → repeated (SectionHeader + TemplateCards + Button + Divider) → Footer |
 | Feedback | Header → Hero (text-only, no feature blocks) → Footer |
+
+## Storybook Hierarchy
+
+```
+Email/
+├── Components/       # Individual component stories (Default + AllVariants)
+│   ├── Wrapper
+│   ├── Header
+│   ├── Hero
+│   ├── Button
+│   ├── Divider
+│   ├── SectionHeader
+│   ├── FeatureBlock
+│   ├── TemplateCard
+│   └── Footer
+└── Templates/        # Full email template compositions
+    ├── Welcome
+    ├── eSign Announce
+    ├── 1st Contract
+    ├── Trust Marks
+    ├── Recommended Docs
+    └── Feedback
+```
+
+- Component stories: `title: 'Email/Components/<Name>'`
+- Template stories: `title: 'Email/Templates/<Name>'`
 
 ## Rules
 
@@ -97,19 +125,19 @@ Custom tokens defined in `tailwind.config.js`:
 
 ### Components
 
-All components use `React.forwardRef` and accept native element props. Same pattern as gitlaw-ui:
+All components use `React.forwardRef` and accept native element props:
 
 ```tsx
 import React, { forwardRef } from 'react';
 
 type NativeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'className'>;
 
-export interface MyEmailComponentProps extends NativeProps {
+export interface MyComponentProps extends NativeProps {
   variant?: 'primary' | 'secondary';
   className?: string;
 }
 
-export const MyEmailComponent = forwardRef<HTMLDivElement, MyEmailComponentProps>(({
+export const MyComponent = forwardRef<HTMLDivElement, MyComponentProps>(({
   variant = 'primary',
   className = '',
   ...nativeProps
@@ -117,12 +145,12 @@ export const MyEmailComponent = forwardRef<HTMLDivElement, MyEmailComponentProps
   <div ref={ref} className={`... ${className}`} {...nativeProps} />
 ));
 
-MyEmailComponent.displayName = 'MyEmailComponent';
+MyComponent.displayName = 'MyComponent';
 ```
 
 - Export component + types from `src/components/index.ts`
 - Use `transition-interactive` (color changes) or `transition-fade` (opacity)
-- EmailButton is an `<a>` tag (correct for HTML emails), not `<button>`
+- Button is an `<a>` tag (correct for HTML emails), not `<button>`
 
 ### Email-Specific Fonts
 
@@ -131,7 +159,7 @@ MyEmailComponent.displayName = 'MyEmailComponent';
 
 ### Email Layout Constraints
 
-- **Fixed width:** 700px (set by EmailWrapper)
+- **Fixed width:** 700px (set by Wrapper)
 - **No media queries** — email clients don't support them reliably
 - **No CSS Grid** — use flexbox only
 - **Tailwind is fine for dev/preview** — production email sending should inline styles
@@ -141,12 +169,13 @@ MyEmailComponent.displayName = 'MyEmailComponent';
 - Don't import directly from `colors.tokens.js` or `colors.ts` in components — use `'../specs'`
 - Don't use Tailwind default spacing (`p-2`, `p-4`) — use `gitlaw-*` tokens
 - Don't use inline `style={}` — use Tailwind classes
-- Don't use `<button>` for CTAs — use `<a>` tags (EmailButton does this correctly)
+- Don't use `<button>` for CTAs — use `<a>` tags (Button does this correctly)
 - Don't create responsive breakpoints — emails are fixed-width
+- Don't prefix component names with `Email` — this is an email-only repo
 
 ### Stories
 
-Max **3-4 stories** per file:
+Component stories — max **3-4 stories** per file:
 
 | Story | Purpose | Required |
 |-------|---------|----------|
@@ -154,14 +183,14 @@ Max **3-4 stories** per file:
 | AllVariants | Grid of all visual states | Always |
 | Interactive | Stateful demo | If needed |
 
-Story meta boilerplate:
+Component story meta boilerplate:
 
 ```tsx
 import type { Meta, StoryObj } from '@storybook/react';
 import { MyComponent } from '../components/MyComponent';
 
 const meta: Meta<typeof MyComponent> = {
-  title: 'Email/MyComponent',
+  title: 'Email/Components/MyComponent',
   component: MyComponent,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],
@@ -171,7 +200,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 ```
 
-All stories use `title: "Email/<ComponentName>"`.
+Template story meta boilerplate:
+
+```tsx
+const meta: Meta<typeof Wrapper> = {
+  title: 'Email/Templates/My Template',
+  component: Wrapper,
+  parameters: { layout: 'centered', backgrounds: { default: 'email-green' } },
+};
+```
 
 ### Git
 
@@ -190,8 +227,8 @@ All stories use `title: "Email/<ComponentName>"`.
 
 When asked to create a new newsletter/email template:
 
-1. **Choose template pattern** — pick the closest match from the 6 templates in AllTemplates
-2. **Create a new story** — in `src/stories/` using the AllTemplates story as reference
+1. **Choose template pattern** — pick the closest match from the 6 templates under `Email/Templates/`
+2. **Create a new story** — in `src/stories/Template<Name>.stories.tsx`
 3. **Compose from primitives** — use existing components, don't create new ones unless needed
 4. **Assets** — put any new images in `src/assets/email/`
 5. **Preview** — check in Storybook that layout is correct at 700px width

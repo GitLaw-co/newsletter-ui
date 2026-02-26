@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { EmailTemplateCard } from '../components/EmailTemplateCard';
+import { TemplateCard } from '../components/TemplateCard';
 
-const meta: Meta<typeof EmailTemplateCard> = {
-  title: 'Email/EmailTemplateCard',
-  component: EmailTemplateCard,
+const meta: Meta<typeof TemplateCard> = {
+  title: 'Email/Components/TemplateCard',
+  component: TemplateCard,
   parameters: { layout: 'centered', backgrounds: { default: 'light' } },
   argTypes: {
     title: { control: 'text' },
@@ -31,7 +31,7 @@ export const AllVariants: Story = {
     <div className="flex flex-col gap-gitlaw-3xl bg-white p-gitlaw-2xl">
       <div>
         <p className="text-sm text-subtle mb-gitlaw-m">Standalone</p>
-        <EmailTemplateCard
+        <TemplateCard
           title="Non-Disclosure Agreement"
           generatedIn="Generated in 1.2s"
           position="standalone"
@@ -40,12 +40,12 @@ export const AllVariants: Story = {
       <div>
         <p className="text-sm text-subtle mb-gitlaw-m">Paired (side by side)</p>
         <div className="flex">
-          <EmailTemplateCard
+          <TemplateCard
             title="Employment Contract"
             generatedIn="Generated in 0.9s"
             position="left"
           />
-          <EmailTemplateCard
+          <TemplateCard
             title="Consulting Agreement"
             generatedIn="Generated in 1.1s"
             position="right"
@@ -56,24 +56,24 @@ export const AllVariants: Story = {
         <p className="text-sm text-subtle mb-gitlaw-m">Two pairs</p>
         <div className="flex flex-col gap-gitlaw-3xl">
           <div className="flex">
-            <EmailTemplateCard
+            <TemplateCard
               title="Non-Disclosure Agreement"
               generatedIn="Generated in 1.2s"
               position="left"
             />
-            <EmailTemplateCard
+            <TemplateCard
               title="Service Agreement"
               generatedIn="Generated in 0.8s"
               position="right"
             />
           </div>
           <div className="flex">
-            <EmailTemplateCard
+            <TemplateCard
               title="Employment Contract"
               generatedIn="Generated in 0.9s"
               position="left"
             />
-            <EmailTemplateCard
+            <TemplateCard
               title="Consulting Agreement"
               generatedIn="Generated in 1.1s"
               position="right"

@@ -2,12 +2,12 @@ import React, { forwardRef } from 'react';
 
 type NativeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'className'>;
 
-export interface EmailWrapperProps extends NativeProps {
+export interface WrapperProps extends NativeProps {
   /** Additional CSS classes */
   className?: string;
 }
 
-export const EmailWrapper = forwardRef<HTMLDivElement, EmailWrapperProps>(
+export const Wrapper = forwardRef<HTMLDivElement, WrapperProps>(
   ({ className = '', children, ...nativeProps }, ref) => (
     <div
       ref={ref}
@@ -19,4 +19,4 @@ export const EmailWrapper = forwardRef<HTMLDivElement, EmailWrapperProps>(
   )
 );
 
-EmailWrapper.displayName = 'EmailWrapper';
+Wrapper.displayName = 'Wrapper';

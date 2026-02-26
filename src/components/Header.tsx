@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 type NativeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'className'>;
 
-export interface EmailHeaderProps extends NativeProps {
+export interface HeaderProps extends NativeProps {
   /** URL to the logo image. If omitted, renders a text-based GitLaw wordmark. */
   logoSrc?: string;
   /** Alt text for the logo image */
@@ -11,7 +11,7 @@ export interface EmailHeaderProps extends NativeProps {
   className?: string;
 }
 
-export const EmailHeader = forwardRef<HTMLDivElement, EmailHeaderProps>(
+export const Header = forwardRef<HTMLDivElement, HeaderProps>(
   ({ logoSrc, logoAlt = 'GitLaw', className = '', ...nativeProps }, ref) => (
     <div ref={ref} className={`shrink-0 ${className}`} {...nativeProps}>
       {logoSrc ? (
@@ -29,4 +29,4 @@ export const EmailHeader = forwardRef<HTMLDivElement, EmailHeaderProps>(
   )
 );
 
-EmailHeader.displayName = 'EmailHeader';
+Header.displayName = 'Header';

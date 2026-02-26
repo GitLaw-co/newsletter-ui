@@ -2,12 +2,12 @@ import React, { forwardRef } from 'react';
 
 type NativeProps = Omit<React.HTMLAttributes<HTMLHRElement>, 'className'>;
 
-export interface EmailDividerProps extends NativeProps {
+export interface DividerProps extends NativeProps {
   /** Additional CSS classes */
   className?: string;
 }
 
-export const EmailDivider = forwardRef<HTMLHRElement, EmailDividerProps>(
+export const Divider = forwardRef<HTMLHRElement, DividerProps>(
   ({ className = '', ...nativeProps }, ref) => (
     <hr
       ref={ref}
@@ -17,4 +17,4 @@ export const EmailDivider = forwardRef<HTMLHRElement, EmailDividerProps>(
   )
 );
 
-EmailDivider.displayName = 'EmailDivider';
+Divider.displayName = 'Divider';

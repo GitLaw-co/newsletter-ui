@@ -1,27 +1,27 @@
-// Email Components
-export { EmailButton } from './EmailButton';
-export type { EmailButtonProps } from './EmailButton';
+// Components
+export { Button } from './Button';
+export type { ButtonProps } from './Button';
 
-export { EmailDivider } from './EmailDivider';
-export type { EmailDividerProps } from './EmailDivider';
+export { Divider } from './Divider';
+export type { DividerProps } from './Divider';
 
-export { EmailFeatureBlock } from './EmailFeatureBlock';
-export type { EmailFeatureBlockProps, EmailFeatureBlockVariant, EmailFeatureBlockHeight } from './EmailFeatureBlock';
+export { FeatureBlock } from './FeatureBlock';
+export type { FeatureBlockProps, FeatureBlockVariant, FeatureBlockHeight } from './FeatureBlock';
 
-export { EmailFooter } from './EmailFooter';
-export type { EmailFooterProps } from './EmailFooter';
+export { Footer } from './Footer';
+export type { FooterProps } from './Footer';
 
-export { EmailHeader } from './EmailHeader';
-export type { EmailHeaderProps } from './EmailHeader';
+export { Header } from './Header';
+export type { HeaderProps } from './Header';
 
-export { EmailHero } from './EmailHero';
-export type { EmailHeroProps } from './EmailHero';
+export { Hero } from './Hero';
+export type { HeroProps } from './Hero';
 
-export { EmailSectionHeader } from './EmailSectionHeader';
-export type { EmailSectionHeaderProps, EmailSectionHeaderSize } from './EmailSectionHeader';
+export { SectionHeader } from './SectionHeader';
+export type { SectionHeaderProps, SectionHeaderSize } from './SectionHeader';
 
-export { EmailTemplateCard } from './EmailTemplateCard';
-export type { EmailTemplateCardProps, EmailTemplateCardPosition } from './EmailTemplateCard';
+export { TemplateCard } from './TemplateCard';
+export type { TemplateCardProps, TemplateCardPosition } from './TemplateCard';
 
-export { EmailWrapper } from './EmailWrapper';
-export type { EmailWrapperProps } from './EmailWrapper';
+export { Wrapper } from './Wrapper';
+export type { WrapperProps } from './Wrapper';

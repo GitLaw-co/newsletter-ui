@@ -1,22 +1,22 @@
 import React, { forwardRef } from 'react';
 
-export type EmailSectionHeaderSize = 'lg' | 'md';
+export type SectionHeaderSize = 'lg' | 'md';
 
 type NativeProps = Omit<React.HTMLAttributes<HTMLHeadingElement>, 'className'>;
 
-export interface EmailSectionHeaderProps extends NativeProps {
+export interface SectionHeaderProps extends NativeProps {
   /** Font size variant — lg=30px (default), md=20px */
-  size?: EmailSectionHeaderSize;
+  size?: SectionHeaderSize;
   /** Additional CSS classes */
   className?: string;
 }
 
-const sizeClasses: Record<EmailSectionHeaderSize, string> = {
+const sizeClasses: Record<SectionHeaderSize, string> = {
   lg: 'text-[30px] leading-[1.4]',
   md: 'text-xl leading-[1.4]',
 };
 
-export const EmailSectionHeader = forwardRef<HTMLHeadingElement, EmailSectionHeaderProps>(
+export const SectionHeader = forwardRef<HTMLHeadingElement, SectionHeaderProps>(
   ({ size = 'lg', className = '', children, ...nativeProps }, ref) => (
     <h2
       ref={ref}
@@ -28,4 +28,4 @@ export const EmailSectionHeader = forwardRef<HTMLHeadingElement, EmailSectionHea
   )
 );
 
-EmailSectionHeader.displayName = 'EmailSectionHeader';
+SectionHeader.displayName = 'SectionHeader';

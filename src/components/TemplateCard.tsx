@@ -1,21 +1,21 @@
 import React, { forwardRef } from 'react';
 
-export type EmailTemplateCardPosition = 'standalone' | 'left' | 'right';
+export type TemplateCardPosition = 'standalone' | 'left' | 'right';
 
 type NativeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'className'>;
 
-export interface EmailTemplateCardProps extends NativeProps {
+export interface TemplateCardProps extends NativeProps {
   /** Document title displayed on the card */
   title: string;
   /** Generated-in caption (e.g. "Generated in 1.2s") */
   generatedIn?: string;
   /** Card border position — standalone=full border, left/right=shared border for pairs */
-  position?: EmailTemplateCardPosition;
+  position?: TemplateCardPosition;
   /** Additional CSS classes */
   className?: string;
 }
 
-export const EmailTemplateCard = forwardRef<HTMLDivElement, EmailTemplateCardProps>(
+export const TemplateCard = forwardRef<HTMLDivElement, TemplateCardProps>(
   (
     {
       title,
@@ -61,4 +61,4 @@ export const EmailTemplateCard = forwardRef<HTMLDivElement, EmailTemplateCardPro
   }
 );
 
-EmailTemplateCard.displayName = 'EmailTemplateCard';
+TemplateCard.displayName = 'TemplateCard';

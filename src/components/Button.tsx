@@ -5,7 +5,7 @@ type NativeAnchorProps = Omit<
   'className' | 'href'
 >;
 
-export interface EmailButtonProps extends NativeAnchorProps {
+export interface ButtonProps extends NativeAnchorProps {
   /** Destination URL — renders as an <a> tag for email compatibility */
   href?: string;
   /** Button label */
@@ -14,7 +14,7 @@ export interface EmailButtonProps extends NativeAnchorProps {
   className?: string;
 }
 
-export const EmailButton = forwardRef<HTMLAnchorElement, EmailButtonProps>(
+export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
   ({ href = '#', children, className = '', ...nativeProps }, ref) => (
     <a
       ref={ref}
@@ -27,4 +27,4 @@ export const EmailButton = forwardRef<HTMLAnchorElement, EmailButtonProps>(
   )
 );
 
-EmailButton.displayName = 'EmailButton';
+Button.displayName = 'Button';

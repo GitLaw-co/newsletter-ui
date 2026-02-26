@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { EmailButton } from '../components/EmailButton';
+import { Button } from '../components/Button';
 
-const meta: Meta<typeof EmailButton> = {
-  title: 'Email/EmailButton',
-  component: EmailButton,
+const meta: Meta<typeof Button> = {
+  title: 'Email/Components/Button',
+  component: Button,
   parameters: { layout: 'centered' },
   argTypes: {
     children: { control: 'text', description: 'Button label' },
@@ -24,10 +24,10 @@ export const Default: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-gitlaw-m p-gitlaw-2xl bg-white">
-      <EmailButton href="#">Start on GitLaw now</EmailButton>
-      <EmailButton href="#">Try eSign now</EmailButton>
-      <EmailButton href="#">Provide feedback</EmailButton>
-      <EmailButton href="#">View recommended documents</EmailButton>
+      <Button href="#">Start on GitLaw now</Button>
+      <Button href="#">Try eSign now</Button>
+      <Button href="#">Provide feedback</Button>
+      <Button href="#">View recommended documents</Button>
     </div>
   ),
 };

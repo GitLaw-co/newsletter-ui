@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { EmailFooter } from '../components/EmailFooter';
+import { Footer } from '../components/Footer';
 
-const meta: Meta<typeof EmailFooter> = {
-  title: 'Email/EmailFooter',
-  component: EmailFooter,
+const meta: Meta<typeof Footer> = {
+  title: 'Email/Components/Footer',
+  component: Footer,
   parameters: { layout: 'centered', backgrounds: { default: 'light' } },
   argTypes: {
     siteUrl: { control: 'text' },
@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (args) => (
     <div className="w-[604px] bg-white p-gitlaw-2xl">
-      <EmailFooter {...args} />
+      <Footer {...args} />
     </div>
   ),
   args: {
@@ -33,11 +33,11 @@ export const AllVariants: Story = {
     <div className="flex flex-col gap-gitlaw-3xl bg-white p-gitlaw-2xl w-[604px]">
       <div>
         <p className="text-sm text-subtle mb-gitlaw-m">Default footer</p>
-        <EmailFooter />
+        <Footer />
       </div>
       <div>
         <p className="text-sm text-subtle mb-gitlaw-m">Custom address</p>
-        <EmailFooter
+        <Footer
           address={'GitLaw Ltd.\n1 London Bridge Street London SE1 9GF UK'}
           siteUrl="https://git.law"
         />
