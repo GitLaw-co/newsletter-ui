@@ -212,7 +212,7 @@ const meta: Meta<typeof Wrapper> = {
 
 ### Git
 
-- **Always branch** — `feature/`, `fix/`, `chore/`. Never commit to `main` directly.
+- **Before writing any code**, run `git branch --show-current`. If on `main`, create a feature branch first (`feature/`, `fix/`, `chore/`). Never make changes directly on `main`.
 - Merge via PR (squash). Merge to `main` triggers production Vercel deploy.
 - Include `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>` in commits.
 
